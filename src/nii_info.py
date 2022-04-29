@@ -148,9 +148,6 @@ def handler(ns: argparse.Namespace) -> int:
     tsvfile: TextIOWrapper = ns.out_tsv
     specs = parse_fields_args(ns.fields)
     fields = parse_field_specs(specs)
-    from pprint import pp
-
-    pp(fields)
 
     nii_info(paths, tsvfile, fields=fields)
 
