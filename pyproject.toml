@@ -5,6 +5,26 @@ description = "Display NIfTI image information in a tabular format"
 authors = ["Andrew Ross <andrew.ross.mail@gmail.com>"]
 license = "MIT"
 
+readme = "README.md"
+
+keywords = ["nifti", "neuroimaging", "neuro", "cli"]
+
+homepage = "https://github.com/andrewrosss/nii-info"
+repository = "https://github.com/andrewrosss/nii-info"
+documentation = "https://github.com/andrewrosss/nii-info"
+
+classifiers = [
+    "Programming Language :: Python :: 3.0",
+    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Environment :: Console",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Software Development :: User Interfaces",
+    "Topic :: Utilities",
+    "Typing :: Typed",
+]
+
 [tool.poetry.dependencies]
 python = "^3.8"
 nibabel = "^3.0.0"
