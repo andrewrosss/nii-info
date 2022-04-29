@@ -236,7 +236,9 @@ def create_fieldnames(fields: list[NiftiField]) -> list[str]:
 
 
 def create_record(
-    img: nib.Nifti1Image, sidecar: dict[str, Any], fields: list[NiftiField]
+    img: nib.Nifti1Image,
+    sidecar: dict[str, Any],
+    fields: list[NiftiField],
 ):
     record: list[Any] = []
     for field in fields:
@@ -267,13 +269,15 @@ def write_tsv(tsvfile, records: list[Any], fieldnames: list[str]):
 
 
 def _get_dims(
-    img: nib.Nifti1Image, sidecar: dict[str, Any]
+    img: nib.Nifti1Image,
+    sidecar: dict[str, Any],
 ) -> tuple[int, int, int, int]:
     return tuple(img.header["dim"][1:5])  # type: ignore
 
 
 def _get_pixdims(
-    img: nib.Nifti1Image, sidecar: dict[str, Any]
+    img: nib.Nifti1Image,
+    sidecar: dict[str, Any],
 ) -> tuple[float, float, float, float]:
     return tuple(img.header["pixdim"][1:5])  # type: ignore
 
