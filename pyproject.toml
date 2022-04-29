@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "nii-info"
-version = "0.1.0"
+version = "1.0.0"
 description = "Display NIfTI image information in a tabular format"
 authors = ["Andrew Ross <andrew.ross.mail@gmail.com>"]
 license = "MIT"
