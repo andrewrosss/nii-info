@@ -27,7 +27,7 @@ class FieldEntity(Enum):
 
 
 FIELD_ENTITIES = tuple(m.value for m in FieldEntity)
-SPEC_REGEX = re.compile(r"^(?P<entity>[^\:]+):(?P<name>[^\:]+)((?P<label>[^\:]*))?$")
+SPEC_REGEX = re.compile(r"^(?P<entity>[^\:]+):(?P<name>[^\:]+)(:(?P<label>[^\:]*))?$")
 CLI_DESCRIPTION = """\
 Display NIfTI image information in a tabular format
 
