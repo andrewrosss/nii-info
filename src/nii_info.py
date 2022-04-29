@@ -28,6 +28,40 @@ class FieldEntity(Enum):
 
 FIELD_ENTITIES = tuple(m.value for m in FieldEntity)
 SPEC_REGEX = re.compile(r"^(?P<entity>[^\:]+):(?P<name>[^\:]+)((?P<label>[^\:]*))?$")
+CLI_DESCRIPTION = """\
+Display NIfTI image information in a tabular format
+
+This application enables the user to modify which
+JSON sidecar & NIfTI header fields are included in
+the generated output via the "-f/--fields" option.
+
+The "-f" option can be passed multiple times and
+uses a special syntax.
+
+The argument for the "-f" option should be string of
+comma-separated values, where each value contains the
+"location", sidecar or nii header "key", and optional
+"label".
+
+For example, to include the "FlipAngle" and "InversionTime"
+fields from the sidecars as well as the "datatype" and
+"descrip" fields from the nifti headers, the command
+could look something like:
+
+nii \\
+    -f 'sidecar:FlipAngle,sidecar:InversionTime' \\
+    -f 'header:datatype,header:descrip:Header Description' \\
+    /path/to/nii/dir/
+
+In the above example, "sidecar:FlipAngle" tells the
+application to extract the "FlipAngle" field
+from each image's sidecar.
+
+Additionally, "header:descrip:Header Description"
+tells the application to extract the "descrip" field
+from each image's nifti header and use the label
+"Header Descrption" as the column heading.
+"""
 
 
 class NiftiField(NamedTuple):
@@ -70,7 +104,10 @@ def main(args: Sequence[str] | None = None) -> int | str:
 def create_parser(
     parser: argparse.ArgumentParser | None = None,
 ) -> argparse.ArgumentParser:
-    parser = parser or argparse.ArgumentParser()
+    parser = parser or argparse.ArgumentParser(
+        description=CLI_DESCRIPTION,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
     parser.add_argument(
         "path",
         nargs="+",
@@ -111,6 +148,9 @@ def handler(ns: argparse.Namespace) -> int:
     tsvfile: TextIOWrapper = ns.out_tsv
     specs = parse_fields_args(ns.fields)
     fields = parse_field_specs(specs)
+    from pprint import pp
+
+    pp(fields)
 
     nii_info(paths, tsvfile, fields=fields)
 
