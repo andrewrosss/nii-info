@@ -83,8 +83,8 @@ class Defaults:
     fields_alias = "[DEFAULTS]"
 
 
-def cli() -> NoReturn:
-    raise SystemExit(main())
+def cli(args: Sequence[str] | None = None) -> NoReturn:
+    raise SystemExit(main(args))
 
 
 def main(args: Sequence[str] | None = None) -> int | str:
